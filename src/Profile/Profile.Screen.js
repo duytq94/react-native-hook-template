@@ -1,5 +1,12 @@
 import React from 'react';
-import {ActivityIndicator, Image, StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import styles from './Profile.Style';
 import colors from '../Themes/Colors';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -54,15 +61,11 @@ export default function ProfileScreen() {
             style={styles.avatar}
             source={{uri: profile.data.avatar_url}}
           />
-          <Text style={styles.textData}>
-            {profile.data.login}
-          </Text>
+          <Text style={styles.textData}>{profile.data.login}</Text>
           <Text style={styles.textData}>{profile.data.name}</Text>
-          <Text style={styles.textData}>
-            {profile.data.location}
-          </Text>
+          <Text style={styles.textData}>{profile.data.location}</Text>
         </View>
-      ) : profile.error ? (
+      ) : profile.err ? (
         <NoDataView onRetryPress={getProfile} />
       ) : null}
 

@@ -1,5 +1,13 @@
 import React from 'react';
-import {ActivityIndicator, FlatList, Image, StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import styles from './Follower.Style';
 import {getFollowerRequest} from './Follower.Action';
@@ -63,7 +71,7 @@ export default function FollowerScreen() {
           ListHeaderComponent={() => <View style={{height: 10}} />}
           ListFooterComponent={() => <View style={{height: 10}} />}
         />
-      ) : listFollower.error ? (
+      ) : listFollower.err ? (
         <NoDataView onRetryPress={getFollower} />
       ) : null}
 
