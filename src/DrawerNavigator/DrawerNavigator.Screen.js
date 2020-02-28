@@ -7,7 +7,7 @@ import styles from './DrawerNavigator.Style';
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigatorScreen() {
+const DrawerNavigatorScreen = () => {
   return (
     <Drawer.Navigator
       drawerContentOptions={{
@@ -27,4 +27,5 @@ export default function DrawerNavigatorScreen() {
       />
     </Drawer.Navigator>
   );
-}
+};
+export default DrawerNavigatorScreen;

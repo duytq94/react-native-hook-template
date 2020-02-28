@@ -17,7 +17,7 @@ import {barStyle} from '../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
-export default function FollowerScreen() {
+const FollowerScreen = () => {
   const navigation = useNavigation();
   const listFollower = useSelector(state => state.getFollower);
   const dispatch = useDispatch();
@@ -82,4 +82,5 @@ export default function FollowerScreen() {
       ) : null}
     </View>
   );
-}
+};
+export default FollowerScreen;

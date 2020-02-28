@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './RootContainer.Style';
 import {Keyboard, Platform, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -12,19 +12,32 @@ import {clearNetworkFail} from '../actions';
 
 const Stack = createStackNavigator();
 
-export default function RootContainerScreen() {
+const RootContainerScreen = () => {
   const sendNetworkFail = useSelector(state => state.sendNetworkFail);
   const [isKeyboardShow, setIsKeyboardShow] = useState(false);
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const dispatch = useDispatch();
   const clearNetworkStatus = () => dispatch(clearNetworkFail());
 
-  Keyboard.addListener('keyboardDidShow', e => {
-    setIsKeyboardShow(true);
-    setKeyboardHeight(e.endCoordinates.height);
-  });
-  Keyboard.addListener('keyboardDidHide', () => {
-    setIsKeyboardShow(false);
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      e => {
+        setIsKeyboardShow(true);
+        setKeyboardHeight(e.endCoordinates.height);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setIsKeyboardShow(false);
+      },
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
   });
 
   if (sendNetworkFail.err) {
@@ -67,4 +80,5 @@ export default function RootContainerScreen() {
       ) : null}
     </View>
   );
-}
+};
+export default RootContainerScreen;

@@ -6,7 +6,7 @@ import {barStyle} from '../const';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
-export default function DetailProfileScreen() {
+const DetailProfileScreen = () => {
   const navigation = useNavigation();
 
   return (
@@ -36,4 +36,5 @@ export default function DetailProfileScreen() {
       </Text>
     </View>
   );
-}
+};
+export default DetailProfileScreen;

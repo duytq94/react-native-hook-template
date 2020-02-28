@@ -16,11 +16,15 @@ import NoDataView from '../Components/NoDataView';
 import {getProfileRequest} from './Profile.Action';
 import {useNavigation} from '@react-navigation/native';
 
-export default function ProfileScreen() {
+const ProfileScreen = () => {
   const navigation = useNavigation();
   const profile = useSelector(state => state.getProfile);
   const dispatch = useDispatch();
   const getProfile = () => dispatch(getProfileRequest('duytq94'));
+
+  const goDetailScreen = () => {
+    navigation.navigate('DetailProfileScreen', {});
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -32,7 +36,7 @@ export default function ProfileScreen() {
         />
         <TouchableOpacity
           style={styles.viewWrapIcLeft}
-          onPress={() => navigation.openDrawer()}>
+          onPress={navigation.openDrawer}>
           <MaterialCommunityIcons
             name={'menu'}
             size={30}
@@ -49,9 +53,7 @@ export default function ProfileScreen() {
         <Text style={styles.textGetData}>Get profile</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.btnGetData}
-        onPress={() => navigation.navigate('DetailProfileScreen', {})}>
+      <TouchableOpacity style={styles.btnGetData} onPress={goDetailScreen}>
         <Text style={styles.textGetData}>Go detail</Text>
       </TouchableOpacity>
 
@@ -76,4 +78,5 @@ export default function ProfileScreen() {
       ) : null}
     </View>
   );
-}
+};
+export default ProfileScreen;
