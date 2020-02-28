@@ -38,7 +38,7 @@ const RootContainerScreen = () => {
       keyboardDidShowListener.remove();
       keyboardDidHideListener.remove();
     };
-  });
+  }, []);
 
   if (sendNetworkFail.err) {
     switch (sendNetworkFail.err) {
