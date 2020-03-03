@@ -1,7 +1,7 @@
-# React Native Template
+# React Native Hook Template
 
 ## Description
-* Template project with Redux, Saga, React Navigation.
+* Template project use fully Hook with Redux, Saga, React Navigation.
 
 ## How to run
 * Clone this project.
@@ -13,10 +13,11 @@
 * Then run `react-native run-ios` to run the project on iOS devices or run through Xcode.
 
 ## Features
-* Regularly update the library to the latest version.
+* Use fully Hook.
+* Apply flow with Redux pattern.
 * Routing with React Navigation (DrawerNavigator, StackNavigator).
 * Fetch simple GitHub REST API with apisauce.
-* Apply flow with Redux pattern.
+* Regularly update the library to the latest version.
 
 ## Gifs
 ![default](gif/iosRecord.gif) ![default](gif/androidRecord.gif)
