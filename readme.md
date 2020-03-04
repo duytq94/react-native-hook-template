@@ -20,4 +20,4 @@
 * Regularly update the library to the latest version.
 
 ## Gifs
-![default](gif/iosRecord.gif) ![default](gif/androidRecord.gif)
+![default](gif/recordScreen.gif)
