@@ -75,6 +75,8 @@ const RootContainerScreen = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
+
+      {/*Keyboard padding*/}
       {isKeyboardShow && Platform.OS === 'ios' ? (
         <View style={{height: keyboardHeight}} />
       ) : null}

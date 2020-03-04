@@ -26,8 +26,8 @@ const ProfileScreen = () => {
     navigation.navigate('DetailProfileScreen', {});
   };
 
-  return (
-    <View style={styles.mainContainer}>
+  const renderToolbar = () => {
+    return (
       <View style={styles.toolbar}>
         <StatusBar
           hidden={false}
@@ -48,16 +48,12 @@ const ProfileScreen = () => {
         </View>
         <View style={styles.viewWrapIcRight} />
       </View>
+    );
+  };
 
-      <TouchableOpacity style={styles.btnGetData} onPress={getProfile}>
-        <Text style={styles.textGetData}>Get profile</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.btnGetData} onPress={goDetailScreen}>
-        <Text style={styles.textGetData}>Go detail</Text>
-      </TouchableOpacity>
-
-      {profile.data ? (
+  const renderDataView = () => {
+    if (profile.data) {
+      return (
         <View style={styles.body}>
           <Image
             style={styles.avatar}
@@ -67,15 +63,46 @@ const ProfileScreen = () => {
           <Text style={styles.textData}>{profile.data.name}</Text>
           <Text style={styles.textData}>{profile.data.location}</Text>
         </View>
-      ) : profile.err ? (
-        <NoDataView onRetryPress={getProfile} />
-      ) : null}
+      );
+    } else if (profile.err) {
+      return <NoDataView onRetryPress={getProfile} />;
+    } else {
+      return null;
+    }
+  };
 
-      {profile.fetching ? (
+  const renderLoading = () => {
+    if (profile.fetching) {
+      return (
         <View style={styles.viewLoading}>
           <ActivityIndicator />
         </View>
-      ) : null}
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const renderButton = () => {
+    return (
+      <View>
+        <TouchableOpacity style={styles.btnGetData} onPress={getProfile}>
+          <Text style={styles.textGetData}>Get profile</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.btnGetData} onPress={goDetailScreen}>
+          <Text style={styles.textGetData}>Go detail</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  return (
+    <View style={styles.mainContainer}>
+      {renderToolbar()}
+      {renderButton()}
+      {renderDataView()}
+      {renderLoading()}
     </View>
   );
 };

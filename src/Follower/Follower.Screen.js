@@ -23,8 +23,8 @@ const FollowerScreen = () => {
   const dispatch = useDispatch();
   const getFollower = () => dispatch(getFollowerRequest('duytq94'));
 
-  return (
-    <View style={styles.mainContainer}>
+  const renderToolbar = () => {
+    return (
       <View style={styles.toolbar}>
         <StatusBar
           hidden={false}
@@ -45,18 +45,40 @@ const FollowerScreen = () => {
         </View>
         <View style={styles.viewWrapIcRight} />
       </View>
+    );
+  };
 
-      <TouchableOpacity style={styles.btnGetData} onPress={getFollower}>
-        <Text style={styles.textGetData}>Get follower</Text>
-      </TouchableOpacity>
+  const renderLoading = () => {
+    if (listFollower.fetching) {
+      return (
+        <View style={styles.viewLoading}>
+          <ActivityIndicator />
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
 
-      <TouchableOpacity
-        style={styles.btnGetData}
-        onPress={() => navigation.navigate('DetailFollowerScreen', {})}>
-        <Text style={styles.textGetData}>Go detail</Text>
-      </TouchableOpacity>
+  const renderButton = () => {
+    return (
+      <View>
+        <TouchableOpacity style={styles.btnGetData} onPress={getFollower}>
+          <Text style={styles.textGetData}>Get follower</Text>
+        </TouchableOpacity>
 
-      {listFollower.data ? (
+        <TouchableOpacity
+          style={styles.btnGetData}
+          onPress={() => navigation.navigate('DetailFollowerScreen', {})}>
+          <Text style={styles.textGetData}>Go detail</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
+  const renderDataView = () => {
+    if (listFollower.data) {
+      return (
         <FlatList
           style={{flex: 1, paddingLeft: 10, paddingRight: 10}}
           data={listFollower.data}
@@ -71,15 +93,20 @@ const FollowerScreen = () => {
           ListHeaderComponent={() => <View style={{height: 10}} />}
           ListFooterComponent={() => <View style={{height: 10}} />}
         />
-      ) : listFollower.err ? (
-        <NoDataView onRetryPress={getFollower} />
-      ) : null}
+      );
+    } else if (listFollower.err) {
+      return <NoDataView onRetryPress={getFollower} />;
+    } else {
+      return null;
+    }
+  };
 
-      {listFollower.fetching ? (
-        <View style={styles.viewLoading}>
-          <ActivityIndicator />
-        </View>
-      ) : null}
+  return (
+    <View style={styles.mainContainer}>
+      {renderToolbar()}
+      {renderButton()}
+      {renderDataView()}
+      {renderLoading()}
     </View>
   );
 };

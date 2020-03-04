@@ -9,8 +9,8 @@ import {useNavigation} from '@react-navigation/native';
 const DetailFollowerScreen = () => {
   const navigation = useNavigation();
 
-  return (
-    <View style={styles.mainContainer}>
+  const renderToolbar = () => {
+    return (
       <View style={styles.toolbar}>
         <StatusBar
           hidden={false}
@@ -31,6 +31,12 @@ const DetailFollowerScreen = () => {
         </View>
         <View style={styles.viewWrapIcRight} />
       </View>
+    );
+  };
+
+  return (
+    <View style={styles.mainContainer}>
+      {renderToolbar()}
       <Text style={styles.textContent}>
         Example this is the detail follower screen
       </Text>
