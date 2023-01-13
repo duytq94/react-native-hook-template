@@ -2,34 +2,23 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import ProfileScreen from '../Profile/Profile.Screen';
 import FollowerScreen from '../Follower/Follower.Screen';
 import React from 'react';
-import colors from '../Themes/Colors';
-import styles from './DrawerNavigator.Style';
 import CounterScreen from '../Counter/Counter.Screen';
+import styles from './DrawerNavigator.Style';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigatorScreen = () => {
   return (
     <Drawer.Navigator
-      drawerContentOptions={{
-        activeTintColor: colors.primary,
-        labelStyle: styles.textItemMenu,
-      }}>
-      <Drawer.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{drawerLabel: 'Profile'}}
-      />
-      <Drawer.Screen
-        name="FollowerScreen"
-        component={FollowerScreen}
-        options={{drawerLabel: 'Follower'}}
-      />
-      <Drawer.Screen
-        name="CounterScreen"
-        component={CounterScreen}
-        options={{drawerLabel: 'Counter'}}
-      />
+      screenOptions={{
+        headerShown: false,
+        drawerActiveBackgroundColor: 'rgba(254,156,143,0.3)',
+        drawerLabelStyle: styles.textItemMenu,
+      }}
+      initialRouteName={'ProfileScreen'}>
+      <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Drawer.Screen name="FollowerScreen" component={FollowerScreen} />
+      <Drawer.Screen name="CounterScreen" component={CounterScreen} />
     </Drawer.Navigator>
   );
 };
