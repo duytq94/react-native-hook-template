@@ -3,17 +3,23 @@ import ProfileScreen from '../Profile/Profile.Screen';
 import FollowerScreen from '../Follower/Follower.Screen';
 import React from 'react';
 import CounterScreen from '../Counter/Counter.Screen';
-import styles from './DrawerNavigator.Style';
+import {fontFamily, fontSize} from '../const';
+import colors from '../Themes/Colors';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigatorScreen = () => {
+const DrawerNavigatorComponent = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
         drawerActiveBackgroundColor: 'rgba(254,156,143,0.3)',
-        drawerLabelStyle: styles.textItemMenu,
+        drawerLabelStyle: {
+          fontSize: fontSize.medium,
+          fontFamily: fontFamily.regular,
+          color: colors.primary,
+          marginLeft: 12,
+        },
       }}
       initialRouteName={'ProfileScreen'}>
       <Drawer.Screen name="ProfileScreen" component={ProfileScreen} />
@@ -22,4 +28,4 @@ const DrawerNavigatorScreen = () => {
     </Drawer.Navigator>
   );
 };
-export default DrawerNavigatorScreen;
+export default DrawerNavigatorComponent;

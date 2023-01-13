@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import rootReducer from './src/reducers';
 import rootSaga from './src/sagas';
-import RootContainer from './src/Root/RootContainer.Screen';
+import RootContainer from './src/Navigator/AppContainer.Screen';
 import 'react-native-gesture-handler';
 
 const sagaMiddleware = createSagaMiddleware();

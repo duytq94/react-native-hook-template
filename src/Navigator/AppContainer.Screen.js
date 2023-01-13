@@ -1,18 +1,14 @@
 import React from 'react';
-import styles from './RootContainer.Style';
-import {View} from 'react-native';
+import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DetailProfileScreen from '../DetailProfile/DetailProfile.Screen';
-import DetailFollowerScreen from '../DetailFollower/DetailFollower.Screen';
-import DrawerNavigatorScreen from '../DrawerNavigator/DrawerNavigator.Screen';
 import Toast from 'react-native-toast-message';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearNetworkFail} from '../actions';
+import AppStack from './StackNavigator.Component';
+import ApplicationStyle from '../Themes/Application.Style';
+import colors from '../Themes/Colors';
 
-const Stack = createNativeStackNavigator();
-
-const RootContainerScreen = () => {
+const AppContainerScreen = () => {
   const sendNetworkFail = useSelector(state => state.sendNetworkFail);
   const dispatch = useDispatch();
   const clearNetworkStatus = () => dispatch(clearNetworkFail());
@@ -46,23 +42,41 @@ const RootContainerScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{headerShown: false}}
-          initialRouteName={'Drawer'}>
-          <Stack.Screen name="Drawer" component={DrawerNavigatorScreen} />
-          <Stack.Screen
-            name="DetailProfileScreen"
-            component={DetailProfileScreen}
-          />
-          <Stack.Screen
-            name="DetailFollowerScreen"
-            component={DetailFollowerScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <NavigationContainer>
+          <AppStack />
+        </NavigationContainer>
+      </KeyboardAvoidingView>
       <Toast />
     </View>
   );
 };
-export default RootContainerScreen;
+export default AppContainerScreen;
+
+const styles = StyleSheet.create({
+  ...ApplicationStyle,
+  viewNetworkErr: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnRetry: {
+    width: 150,
+    height: 40,
+    backgroundColor: colors.white,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textRetry: {
+    color: colors.black,
+    fontWeight: 'bold',
+  },
+});
