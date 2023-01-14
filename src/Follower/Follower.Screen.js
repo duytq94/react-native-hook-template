@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
-  StatusBar,
   Text,
   TouchableOpacity,
   View,
@@ -12,41 +11,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import styles from './Follower.Style';
 import {getFollowerRequest} from './Follower.Action';
 import NoDataView from '../Components/NoDataView';
-import colors from '../Themes/Colors';
-import {barStyle} from '../const';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import AppBar from '../Components/AppBar';
 
 const FollowerScreen = () => {
   const navigation = useNavigation();
   const listFollower = useSelector(state => state.getFollower);
   const dispatch = useDispatch();
   const getFollower = () => dispatch(getFollowerRequest('duytq94'));
-
-  const renderToolbar = () => {
-    return (
-      <View style={styles.toolbar}>
-        <StatusBar
-          hidden={false}
-          backgroundColor={colors.primary}
-          barStyle={barStyle.lightContent}
-        />
-        <TouchableOpacity
-          style={styles.viewWrapIcLeft}
-          onPress={() => navigation.openDrawer()}>
-          <MaterialCommunityIcons
-            name={'menu'}
-            size={30}
-            color={colors.white}
-          />
-        </TouchableOpacity>
-        <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>Follower</Text>
-        </View>
-        <View style={styles.viewWrapIcRight} />
-      </View>
-    );
-  };
 
   const renderLoading = () => {
     if (listFollower.fetching) {
@@ -90,8 +62,8 @@ const FollowerScreen = () => {
           )}
           keyExtractor={(item, index) => index.toString()}
           showsVerticalScrollIndicator={false}
-          ListHeaderComponent={() => <View style={{height: 10}} />}
-          ListFooterComponent={() => <View style={{height: 10}} />}
+          ListHeaderComponent={renderHeader}
+          ListFooterComponent={renderHeader}
         />
       );
     } else if (listFollower.err) {
@@ -101,9 +73,13 @@ const FollowerScreen = () => {
     }
   };
 
+  const renderHeader = () => {
+    return <View style={{height: 10}} />;
+  };
+
   return (
     <View style={styles.mainContainer}>
-      {renderToolbar()}
+      <AppBar title={'Follower'} onBtnLeftPress={navigation.openDrawer} />
       {renderButton()}
       {renderDataView()}
       {renderLoading()}
