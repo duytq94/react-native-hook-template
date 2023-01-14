@@ -2,20 +2,16 @@ import React from 'react';
 import {
   ActivityIndicator,
   Image,
-  StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import styles from './Profile.Style';
-import colors from '../Themes/Colors';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {barStyle} from '../const';
 import {useDispatch, useSelector} from 'react-redux';
 import NoDataView from '../Components/NoDataView';
 import {getProfileRequest} from './Profile.Action';
 import {useNavigation} from '@react-navigation/native';
-import AppBar from "../Components/AppBar";
+import AppBar from '../Components/AppBar';
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
