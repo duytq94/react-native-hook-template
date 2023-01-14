@@ -2,19 +2,16 @@ import React from 'react';
 import {
   ActivityIndicator,
   Image,
-  StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import styles from './Profile.Style';
-import colors from '../Themes/Colors';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {barStyle} from '../const';
 import {useDispatch, useSelector} from 'react-redux';
 import NoDataView from '../Components/NoDataView';
 import {getProfileRequest} from './Profile.Action';
 import {useNavigation} from '@react-navigation/native';
+import AppBar from '../Components/AppBar';
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -24,31 +21,6 @@ const ProfileScreen = () => {
 
   const goDetailScreen = () => {
     navigation.navigate('DetailProfileScreen', {});
-  };
-
-  const renderToolbar = () => {
-    return (
-      <View style={styles.toolbar}>
-        <StatusBar
-          hidden={false}
-          backgroundColor={colors.primary}
-          barStyle={barStyle.lightContent}
-        />
-        <TouchableOpacity
-          style={styles.viewWrapIcLeft}
-          onPress={navigation.openDrawer}>
-          <MaterialCommunityIcons
-            name={'menu'}
-            size={30}
-            color={colors.white}
-          />
-        </TouchableOpacity>
-        <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>Profile</Text>
-        </View>
-        <View style={styles.viewWrapIcRight} />
-      </View>
-    );
   };
 
   const renderDataView = () => {
@@ -99,7 +71,7 @@ const ProfileScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {renderToolbar()}
+      <AppBar title={'Profile'} onBtnLeftPress={navigation.openDrawer} />
       {renderButton()}
       {renderDataView()}
       {renderLoading()}

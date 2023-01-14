@@ -1,10 +1,8 @@
 import React, {useRef, useState} from 'react';
-import {StatusBar, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import styles from './Counter.Style';
-import colors from '../Themes/Colors';
-import {barStyle} from '../const';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import AppBar from '../Components/AppBar';
 
 const CounterScreen = () => {
   const navigation = useNavigation();
@@ -14,31 +12,6 @@ const CounterScreen = () => {
   const updateState = () => {
     counter.current++;
     setCounterState(counterState + 1);
-  };
-
-  const renderToolbar = () => {
-    return (
-      <View style={styles.toolbar}>
-        <StatusBar
-          hidden={false}
-          backgroundColor={colors.primary}
-          barStyle={barStyle.lightContent}
-        />
-        <TouchableOpacity
-          style={styles.viewWrapIcLeft}
-          onPress={navigation.openDrawer}>
-          <MaterialCommunityIcons
-            name={'menu'}
-            size={30}
-            color={colors.white}
-          />
-        </TouchableOpacity>
-        <View style={styles.viewWrapTitleToolbar}>
-          <Text style={styles.titleToolbar}>Counter</Text>
-        </View>
-        <View style={styles.viewWrapIcRight} />
-      </View>
-    );
   };
 
   const renderButton = () => {
@@ -60,7 +33,7 @@ const CounterScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {renderToolbar()}
+      <AppBar title={'Counter'} onBtnLeftPress={navigation.openDrawer} />
       {renderButton()}
       {renderData()}
     </View>
