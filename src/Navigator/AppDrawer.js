@@ -8,7 +8,7 @@ import colors from '../Themes/Colors';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigatorComponent = () => {
+const AppDrawer = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -28,4 +28,4 @@ const DrawerNavigatorComponent = () => {
     </Drawer.Navigator>
   );
 };
-export default DrawerNavigatorComponent;
+export default AppDrawer;

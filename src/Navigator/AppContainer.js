@@ -4,11 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearNetworkFail} from '../actions';
-import AppStack from './StackNavigator.Component';
+import AppStack from './AppStack';
 import ApplicationStyle from '../Themes/Application.Style';
 import colors from '../Themes/Colors';
 
-const AppContainerScreen = () => {
+const AppContainer = () => {
   const sendNetworkFail = useSelector(state => state.sendNetworkFail);
   const dispatch = useDispatch();
   const clearNetworkStatus = () => dispatch(clearNetworkFail());
@@ -53,7 +53,7 @@ const AppContainerScreen = () => {
     </View>
   );
 };
-export default AppContainerScreen;
+export default AppContainer;
 
 const styles = StyleSheet.create({
   ...ApplicationStyle,

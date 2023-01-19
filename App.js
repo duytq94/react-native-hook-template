@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import rootReducer from './src/reducers';
 import rootSaga from './src/sagas';
-import RootContainer from './src/Navigator/AppContainer.Screen';
+import AppContainer from './src/Navigator/AppContainer';
 import 'react-native-gesture-handler';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -28,7 +28,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <RootContainer />
+          <AppContainer />
         </PersistGate>
       </Provider>
     );

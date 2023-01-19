@@ -1,4 +1,4 @@
-import DrawerNavigatorComponent from './DrawerNavigator.Component';
+import AppDrawer from './AppDrawer';
 import DetailProfileScreen from '../DetailProfile/DetailProfile.Screen';
 import DetailFollowerScreen from '../DetailFollower/DetailFollower.Screen';
 import React from 'react';
@@ -11,7 +11,7 @@ const AppStack = props => {
     <Stack.Navigator
       screenOptions={{headerShown: false}}
       initialRouteName={'Drawer'}>
-      <Stack.Screen name="Drawer" component={DrawerNavigatorComponent} />
+      <Stack.Screen name="Drawer" component={AppDrawer} />
       <Stack.Screen
         name="DetailProfileScreen"
         component={DetailProfileScreen}
